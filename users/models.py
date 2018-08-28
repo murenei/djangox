@@ -8,3 +8,8 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+    
+    def save(self, *args, **kwargs):
+        self.username = self.email
+        super().save(*args, **kwargs)  # Call the "real" save() method.
+    
